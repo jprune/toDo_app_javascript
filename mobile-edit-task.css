@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+.menubar {
+    display: flex;
+    flex-direction: row;
+    margin-top: 2rem;
+    justify-content: space-around;
+    background-color: #078A93;
+    height: 4rem;
+    align-items: center;
+
+}
+
+.search {
+    background-image: url("./assets/search.svg");
+    background-repeat: no-repeat;
+    background-position: 5% 50%;
+    border-radius: 5px;
+    text-align: left;
+    font-family: 'Roboto', sans-serif;
+    font-size: 2rem;
+    z-index: 10;outline: none;
+    border: none;
+}
+
+.date {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+
+}
+h1 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    padding-left: 1rem;
+    padding-top: 1rem;
+}
+
+.dateToday {
+    font-family: 'Roboto', sans-serif;
+    padding-left: 1rem;
+    opacity: 60%;
+}
+
+hr {
+    display: block;
+    border-top: 0.1rem solid #E3E0E0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+
+}
+
+.taskBefore {
+    display: flex;
+    flex-direction: column;
+    justify-content: baseline;
+    margin: 3rem;
+
+}
+.bulletPointColor {
+
+    padding-left: 1rem;
+
+}
+.taskDescription {
+    margin-top: 0px;
+    padding-left: 1rem;
+}
+
+#inputTask {
+   border: 2px solid #E3E0E0;
+}
+
+.addTaskBtn {
+    border-radius: 5px;
+    background-color: #078A93;
+    font-family: 'Roboto', sans-serif;
+    color: #E3E0E0;
+    border: 0px;
+    width: 113px;
+    height: 27px;
+
+}
+
+.cancelTaskBtn {
+    border: 0px;
+    border-radius: 5px;
+    font-family: 'Roboto', sans-serif;
+    width: 113px;
+    height: 27px;
+
+}
+form {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+}
+
+::placeholder {
+    font-family: 'Roboto', sans-serif;
+    color: black;
+    opacity: 60%;
+    text-align:left
+}
+.buttons {
+    display: flex;
+    justify-items: space-evenly;
+    align-items: center;
+    gap: 2rem;
+}
+.taskElement {
+    display: flex;
+    flex-direction: row;  
+}
+
+.editTask {
+    display: flex;
+    justify-content: start;
+    margin-left: 1rem;
+    gap: 1rem;
+
+}
+.bulletPointGray {
+    padding-left: 1rem;
+}
