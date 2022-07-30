@@ -138,13 +138,40 @@ form {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+
+    margin: 1rem;
 }
-.renderTasks div {
+.todo-render {
     display: flex;
     width: 100%;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    margin: 1rem 0;
+    background-color: #078a9339;
+    border-radius: 10px;
 }
-.renderTasks h3, p {
+.todo-render h3, .todo-render p {
+    display: flex;
     width: 100%;
+    padding: 1rem; 
+    margin: 0;
+}
+
+.btn-todo {
+    display: flex;
+    width: 100%;
+    height: 2.5rem;
+    justify-content: space-around;
+    margin-bottom: 0.5rem;
+
+}
+.btn-todo button {
+    background-color: transparent;
+    border: none;
+}
+.btn-todo button img {
+    height: 2rem;
+    width: 2rem;
 }
