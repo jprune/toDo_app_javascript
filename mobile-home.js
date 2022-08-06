@@ -1,9 +1,8 @@
-let myToDos = [];
+let myToDos = JSON.parse(localStorage.getItem("myToDos")) || [];
 
 const dateEl = document.getElementById('dateToday')
 const addTodoDiv = document.getElementById('add-todo')
 const createTodoBtn = document.getElementById('edit-todo')
-
 
 //set today's date
 const renderDate = () => {
@@ -14,6 +13,7 @@ const renderDate = () => {
     dateEl.textContent = monthNames[today.getMonth()] + ' ' + today.getDate()
 }
 renderDate()
+render(myToDos)
 
 // Create inputForm when add button in the top right is clicked
 const createInputForm = () => {
@@ -35,10 +35,10 @@ const createInputForm = () => {
 createTodoBtn.addEventListener('click', createInputForm)
 
 //render Tasks under input fields
-const render = (array) => {
+function render(array) {
   const renderTaskContainer = document.querySelector('.renderTasks');
   renderTaskContainer.innerHTML = "";
-  localStorage.setItem("myToDos", JSON.stringify(array))
+
   array.forEach(element => {
       const todo = document.createElement("div");
       todo.classList.add("todo-render");
@@ -81,6 +81,10 @@ const render = (array) => {
   }); 
 }
 
+function setLocalStorage(array) {
+  localStorage.setItem("myToDos", JSON.stringify(array))
+}
+
 // get values of input if full and call render function
 function addTaskBtnListener(addTaskBtn) {
   addTaskBtn.addEventListener("click", processInput)
@@ -101,7 +105,7 @@ const processInput = e => {
       });
       inputHeadingEl.value = '';
       inputDescriptionEl.value = '';
-      
+      setLocalStorage(myToDos)
       render(myToDos)
       addTodoDiv.innerHTML = "";
   }
@@ -124,6 +128,7 @@ function toDoBtnFunctions() {
     if (e.target.parentNode.classList.contains("delete-todo")) {
         //only return items of the array which are NOT equal to the id 
         myToDos = myToDos.filter(el => el.id !== parseInt(e.target.parentNode.id))
+        setLocalStorage(myToDos)
         render(myToDos)
     }
   
@@ -154,7 +159,7 @@ function toDoBtnFunctions() {
 
       //hide current toDo that is edited 
       e.target.parentNode.parentNode.parentNode.style.display = "none"
-      //addTask --> render myToDos again but with new content in the index OR Cancel closes editor and unhides todo
+      //addTask --> render myToDos again but with new content in the index OR Cancel closes editor and show todo
 
       //cancel:
       document.querySelector('.cancelTaskBtn').addEventListener('click', () => {
@@ -168,6 +173,7 @@ function toDoBtnFunctions() {
         e.preventDefault()
         toDoToEdit[0].title = inputHeadingEl.value
         toDoToEdit[0].description = inputDescriptionEl.value
+        setLocalStorage(myToDos)
         render(myToDos)
         addTodoDiv.innerHTML = "";
       })
