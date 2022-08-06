@@ -38,6 +38,7 @@ createTodoBtn.addEventListener('click', createInputForm)
 const render = (array) => {
   const renderTaskContainer = document.querySelector('.renderTasks');
   renderTaskContainer.innerHTML = "";
+  localStorage.setItem("myToDos", JSON.stringify(array))
   array.forEach(element => {
       const todo = document.createElement("div");
       todo.classList.add("todo-render");
@@ -82,26 +83,28 @@ const render = (array) => {
 
 // get values of input if full and call render function
 function addTaskBtnListener(addTaskBtn) {
-  addTaskBtn.addEventListener("click", e => {
-    e.preventDefault();
-    const inputHeadingEl = document.getElementById('input-heading')
-    const inputDescriptionEl = document.getElementById('input-description')
-    if (inputHeadingEl.value === '') {
-        return window.alert("please input value")
-    } else {
-        let id = myToDos.length + 1;
-        myToDos.unshift({
-            title: inputHeadingEl.value, 
-            description: inputDescriptionEl.value, 
-            id: id
-        });
-        inputHeadingEl.value = '';
-        inputDescriptionEl.value = '';
-        localStorage.setItem("myToDos", JSON.stringify(myToDos))
-        render(myToDos)
-        addTodoDiv.innerHTML = "";
-    }
-  })
+  addTaskBtn.addEventListener("click", processInput)
+}
+
+const processInput = e => {
+  e.preventDefault();
+  const inputHeadingEl = document.getElementById('input-heading')
+  const inputDescriptionEl = document.getElementById('input-description')
+  if (inputHeadingEl.value === '') {
+      return window.alert("please input value")
+  } else {
+      let id = myToDos.length + 1;
+      myToDos.unshift({
+          title: inputHeadingEl.value, 
+          description: inputDescriptionEl.value, 
+          id: id
+      });
+      inputHeadingEl.value = '';
+      inputDescriptionEl.value = '';
+      
+      render(myToDos)
+      addTodoDiv.innerHTML = "";
+  }
 }
 
 //Close editor when cancelBtn is pressed
@@ -134,9 +137,40 @@ function toDoBtnFunctions() {
     }
 
     if (e.target.parentNode.classList.contains("editBtn-todo")) {
-      //find position in array with id
-      //open editor with content inside
-      //either way overwrite edit or cancel func
+      //jump to the top of page
+      window.scrollTo(0, 0)
+      //find corresponding todo obj in array with id
+      const toDoToEdit = myToDos.filter(el => el.id === parseInt(e.target.parentNode.id))
+      console.log(toDoToEdit)
+      //open editor
+      createInputForm()
+      const addTaskBtn = document.querySelector('.addTaskBtn')
+      addTaskBtn.textContent = "Save"
+      //put content inside 
+      const inputHeadingEl = document.getElementById('input-heading')
+      inputHeadingEl.value = toDoToEdit[0].title
+      const inputDescriptionEl = document.getElementById('input-description')
+      inputDescriptionEl.value = toDoToEdit[0].description
+
+      //hide current toDo that is edited 
+      e.target.parentNode.parentNode.parentNode.style.display = "none"
+      //addTask --> render myToDos again but with new content in the index OR Cancel closes editor and unhides todo
+
+      //cancel:
+      document.querySelector('.cancelTaskBtn').addEventListener('click', () => {
+        e.target.parentNode.parentNode.parentNode.style.display = "flex"
+      })
+
+      //remove old event listener
+      
+      addTaskBtn.removeEventListener('click', processInput)
+      addTaskBtn.addEventListener('click', e => {
+        e.preventDefault()
+        toDoToEdit[0].title = inputHeadingEl.value
+        toDoToEdit[0].description = inputDescriptionEl.value
+        render(myToDos)
+        addTodoDiv.innerHTML = "";
+      })
     }
   });
 }
