@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./mobile-home.css">
+    <link rel="stylesheet" href="./mobile-menu.css">
+    <link rel="stylesheet" href="./desktop-todo.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <title>Document</title>
+</head>
+<body>
+    <nav class="menubar">
+        <div class="menu">
+            <a href=""><img src="./assets/menu.svg"></a>
+        </div>
+        <div class="home">
+            <a href=""><img src="./assets/home.svg"></a>
+        </div>
+        <form class="search" action="" method="">
+            <input class="search" type="text" placeholder="" name="search-todo">          
+        </form>
+        <div class="icons-home hide">
+            <a href=""><i id="fa" class="fa fa-question-circle" aria-hidden="true"></i></a> 
+            <a href=""><i id="fa" class="fa fa-bell" aria-hidden="true"></i></a> 
+            <a href=""><i id="fa" class="fa fa-user" aria-hidden="true"></i></a> 
+             </div>
+        <div class="addTodo">
+            <button id="edit-todo"><img src="./assets/add_gray.svg"></button>
+        </div>
+    </nav>
+    <main>
+        <div class="date">
+            <h1>Today</h1>
+            <!--render todays date over JS (window object)-->
+            <p class="dateToday" id="dateToday"></p> 
+        </div>
+        <hr class="devider">
+        <div id="add-todo"></div>
+        <div class="renderTasks"></div>
+        <div class="inbox">
+            <div class="menu-icon">
+                <img src="./assets/inbox.svg">
+            </div>
+             <p class="inboxText">Inbox</p>
+        </div>
+        <div class="today">
+             <div class="menu-icon">
+                 <img src="./assets/today.svg">
+                </div>
+             <p class="todayText">Today<p>
+        </div>
+        <div class="upcoming">
+            <div class="menu-icon">
+                <img src="./assets/upcoming.svg">
+            </div>
+            <p class="upcomingText">Upcoming</p>
+        </div>
+        <div class="label">
+            <div class="menu-icon">
+                <img src="./assets/label.svg">
+            </div>
+            <p class="labelText">Label</p>
+        </div>
+    </main>
+    <hr class="devider">
+    <div class="project">
+        <div class="projectIcon">
+            <img src="./assets/expand_more.svg" alt="Expand more">
+        </div>
+        <p class="projectText">Project</p>
+    
+    </div>
+        <ul>
+            <li class="projectListElement"><span>Personal</span></li>
+            <li class="projectListElement"><span>Family</span></li>
+            <li class="projectListElement"><span>Work</span></li>
+            <li class="projectListElement"><span>Coding</span></li>
+        </ul>
+    <script src="mobile-home.js">
+        
+    </script>   
+    <script src="edittodo.js"></script> 
+</body>
+</html>

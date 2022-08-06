@@ -27,6 +27,9 @@ body {
     background-color: transparent;
     border: none;
 }
+.home{
+    margin: 10px;
+}
 
 .search {
     background-image: url("./assets/search.svg");
@@ -79,6 +82,7 @@ form {
     flex-direction: column;
     justify-items: center;
     align-items: center;
+    width: 50%;
 }
 ::placeholder {
     font-family: 'Roboto', sans-serif;
@@ -88,7 +92,7 @@ form {
 }
 
 #input-heading {
-    width: 85%;
+    width: 50%;
     height: 3rem;
     margin-bottom: 0.5rem;
     margin-top: 1rem;
